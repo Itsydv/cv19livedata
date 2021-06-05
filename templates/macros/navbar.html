@@ -1,0 +1,24 @@
+{% macro navbar(param) %}
+    <nav class="navbar navbar-expand-md navbar-dark py-2 ps-md-5 pe-md-3 pe-xxl-5" style="z-index: 100!important">
+      <div class="container-fluid mx-0 mx-md-5 px-0">
+        <a class="navbar-brand text-spacing-lg fw-bold mx-auto mx-md-0 text-dark ps-md-0 text-2-5 gradient" href="{{ url_for('home') }}">{{ param.brand_name }}</a>
+        <div class="navbar-collapse" id="myNav" style="overflow: scroll-auto!important">
+          <a class="sidenav-brand text-white brand fw-bold my-3 mx-auto text-1-2 position-absolute" style="top: 28px!important;" href="{{ url_for('home') }}">{{ param.brand_name }}</a>
+          <ul class="navbar-content navbar-nav ms-auto">
+            <li class="nav-item rounded-0">
+              <a target="_blank" class="mb-2 me-4" href="{{ param.github_url }}"><i class="fa fa-github me-2 text-2 icons"></i></a>
+            </li>
+            <li class="nav-item rounded-0">
+              <a target="_blank" class="mb-2 me-4" href="{{ param.telegram_url }}"><i class="fa fa-telegram me-2 text-2 icons"></i></a>
+            </li>
+            <li class="nav-item rounded-0">
+              <a target="_blank" class="mb-2 me-4" href="{{ param.instagram_url }}"><i class="fa fa-instagram me-2 text-2 icons"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <marquee class="fw-normal signika-font text-1-2 h-fit" width="100%" direction="left" height="100px">
+    This website is made by StackBurst Team for the public Interest and the API used in the Website is of "<strong>https://www.covid19api.com</strong>". All the Images used in this website is only for Educational Purposes and we are not gaining any type of profit with Website Source code is available on my Github Repo {{ param.github_url }}.
+    </marquee>
+{% endmacro %}

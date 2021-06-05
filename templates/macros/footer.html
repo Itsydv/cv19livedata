@@ -1,0 +1,27 @@
+{% macro footer(param) %}
+    <!-- footer -->
+    <footer class="footer text-white mt-auto pb-3 bg-dark">
+      <div class="container-md py-2 py-md-3">
+        <div class="row justify-content-evenly">
+          <div class="col-12 col-md-4 mt-2 text-center">
+            <div class="mx-auto col-6"><img width="70%" src="{{ url_for('static', filename='images/stay-home.gif') }}" alt="Stay Home"></div>
+          </div>
+          <div class="col-12 col-md-4 mt-2 mt-md-4 text-center">
+            <a href="{{ url_for( 'home' ) }}" class="brand text-white text-capitalize text-1-6">{{ param.brand_name }}</a>
+            <hr class="mb-2 bg-theme w-70 mx-auto" style="height: 3px; opacity: 0.9;">
+          </div>
+          <div class="col-12 col-md-4 mt-2 text-center">
+            <h6 class="text-spacing-lg text-capitalize text-1-5 fw-lighter">Stay Connected</h6>
+            <div class="d-flex justify-content-evenly mt-3 mt-md-4">
+              <a target="_blank" class="mb-2" href="{{ param.github_url }}"><i class="fa fa-github me-2 text-2-5 icons"></i></a>
+              <a target="_blank" class="mb-2" href="{{ param.telegram_url }}"><i class="fa fa-telegram me-2 text-2-5 icons"></i></a>
+              <a target="_blank" class="mb-2" href="{{ param.instagram_url }}"><i class="fa fa-instagram me-2 text-2-5 icons"></i></a>
+            </div>
+          </div>
+        </div>
+          </div>
+      <div class="text-center">
+        <a href="/" class="footer-link text-white"><small class="my-4 text-1-2">&copy; {{ param.brand_name }} by {{ param.author_name }}, {{ param.year }}</small></a>
+      </div>
+    </footer>
+{% endmacro %}

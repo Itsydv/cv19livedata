@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <div class="container">
+        <div class="row mt-md-5">
+            <div class="col-12 col-md-6 mt-4 mt-md-0">
+                <div class="mx-auto col-4 col-md-3"><img class="rounded-circle" width="100%" src="{{ url_for('static', filename='images/girl_wearing_mask.jpg') }}" alt="Woman Clipart"></div>
+                <div class="d-flex flex-column">
+                    <h2 class="signika-font text-center mt-4 mt-md-5 gradient">Stopping the Spread Starts with You.</h2>
+                    <h4 class="signika-font text-center mt-2">Wear a mask</h4>
+                    <h4 class="signika-font text-center mt-2">Clean your hands</h4>
+                    <h4 class="signika-font text-center mt-2">Maintain safe distance</h4>
+                    <h4 class="signika-font text-center mt-2">Get vaccinated</h4>
+                    <a class="mt-3 mx-auto btn btn-dark" target='_blank' href="https://www.mohfw.gov.in/covid_vaccination/vaccination/index.html">More Info</a>
+                </div>
+            </div>
+            <div class="mx-auto mt-5 mt-md-0 col-12 col-md-6 signika-font">
+                <div class="ms-0 ms-md-5 text-center">
+                    <div class="mx-auto col-10"><img style="border-radius: 20px;" width="100%" src="{{ url_for('static', filename='images/people-wearing-masks.jpg') }}" alt="People Image Image"></div>
+                    <h1 class="text-2-2 mt-3 mt-md-5 gradient">Global Records</h1>
+                    <div class="live_data mt-3" id="live_data">
+                        {% for key in data['Global'] -%}
+                        <h4 class="gradient">{{key}}: {{data['Global'][key]}}</h4>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 mx-auto mt-5">
+            <h1 class="text-2 mt-2 text-center signika-font gradient">Check Your Country's Status</h1>
+            <div class="btn-group w-100 my-4">
+                <select id="selectedCountry" class="form-select border-0" aria-label="Default select example">
+                    <option selected>Select your Country</option>
+                    {% for country in data['Countries'] -%}
+                    <option value="{{ loop.index }}">{{ country['Country'] }}</option>
+                    {% endfor %}
+                </select>
+                <button class="btn btn-danger h-fit" id="checkBtn">Check</button>
+            </div>
+            <div class="live_country_data signika-font mb-4 bg-white px-3 text-center" style="border-radius: 10px!important;" id="live_country_data">
+            </div>
+        </div>
+        <div class="bg-white row">
+            <div class="mx-auto col-12 col-md-4">
+                <h1 class="text-1-2 mt-2 text-center signika-font gradient">Top 10 Countries by Total Confirmed Cases</h1>
+                <table class="table">
+                  <thead class="bg-dark text-white thead-dark">
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Country</th>
+                      <th scope="col">Total Confirmed</th>
+                    </tr>
+                  </thead>
+                  <tbody class="p-1">
+                    {% for data in top10confirmed -%}
+                    <tr>
+                        <th scope="row">{{ loop.index }}</th>
+                        <td>{{data}}</td>
+                        <td>{{top10confirmed[data]}}</td>
+                    <tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+            </div>
+            <div class="mx-auto col-12 col-md-4">
+                <h1 class="text-1-2 mt-2 text-center signika-font gradient">Top 10 Countries by Total No. of Deaths</h1>
+                <table class="table">
+                  <thead class="bg-dark text-white thead-dark">
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Country</th>
+                      <th scope="col">Total Confirmed</th>
+                    </tr>
+                  </thead>
+                  <tbody class="p-1">
+                    {% for data in top10death -%}
+                    <tr>
+                        <th scope="row">{{ loop.index }}</th>
+                        <td>{{data}}</td>
+                        <td>{{top10death[data]}}</td>
+                    <tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+            </div>
+            <div class="mx-auto col-12 col-md-4">
+                <h1 class="text-1-2 mt-2 text-center signika-font gradient">Top 10 Countries by Total Recovered</h1>
+                <table class="table">
+                  <thead class="bg-dark text-white thead-dark">
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Country</th>
+                      <th scope="col">Total Confirmed</th>
+                    </tr>
+                  </thead>
+                  <tbody class="p-1">
+                    {% for data in top10recovered -%}
+                    <tr>
+                        <th scope="row">{{ loop.index }}</th>
+                        <td>{{data}}</td>
+                        <td>{{top10recovered[data]}}</td>
+                    <tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+            </div>
+        </div>
+        <hr class="bg-theme theme-color" style="height: 3px!important; opacity: 0.9;">
+    </div>
+    <div class="container-fluid bg-gray">
+        <div class="row my-4">
+            <div class="col-12 col-md-6">
+                <div class="d-flex mx-auto col-10"><img class="mx-auto" style="border-radius: 25px;" width="80%" src="{{ url_for('static', filename='images/maintain-distance.gif') }}" alt="People Image Image"></div>
+            </div>
+            <div class="col-12 mt-4 mt-md-0 col-md-6">
+                <h1 class="text-2 text-center signika-font gradient">Precautions needed</h1>
+                <h1 class="text-center text-1-4 mt-3 signika-font">To prevent the spread of COVID-19:</h1>
+                <p class="text-center text-1-2 fw-normal">
+    Clean your hands often.<br>
+    Use soap and water, or an alcohol-based hand rub.<br>
+    Maintain a safe distance from anyone who is coughing or sneezing.<br>
+    Wear a mask when physical distancing is not possible.<br>
+    Don’t touch your eyes, nose or mouth.<br>
+    Cover your nose and mouth with your bent elbow or a tissue when you cough or sneeze.<br>
+    Stay home if you feel unwell.
+                </p>
+            </div>
+        </div>
+        <div class="row mb-4 mt-md-4">
+            <div class="col-12 mt-4 mt-md-0 col-md-6">
+                <h1 class="text-2 text-center signika-font gradient">Precautions needed</h1>
+                <h1 class="text-1-4 text-center mt-3 signika-font">
+                    Symptoms of COVID-19:
+                </h1>
+                <ul class="text-1-1 ms-3 ms-md-5 ps-md-5 fw-normal">
+                    <li class="muted-li">Fever or chills</li>
+                    <li class="muted-li">Cough</li>
+                    <li class="muted-li">Shortness of breath or difficulty breathing</li>
+                    <li class="muted-li">Fatigue</li>
+                    <li class="muted-li">Muscle or body aches</li>
+                    <li class="muted-li">Headache</li>
+                    <li class="muted-li">New loss of taste or smell</li>
+                    <li class="muted-li">Sore throat</li>
+                    <li class="muted-li">Congestion or runny nose</li>
+                    <li class="muted-li">Nausea or vomiting</li>
+                    <li class="muted-li">Diarrhea</li>
+                </ul>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="d-flex mx-auto col-10"><img class="mx-auto" style="border-radius: 20px;" width="80%" src="{{ url_for('static', filename='images/covid-symptoms.jpg') }}" alt="People Image Image"></div>
+            </div>
+        </div>
+    </div>
+{%- endblock %}
