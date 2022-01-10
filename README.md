@@ -1,6 +1,8 @@
 # Covid19 Live Records WEB APP
 This site will show you live covid19 cases of different countries and site also covers precaution and some info regarding cv19
 
+*(Sorry Guys I know the project is not well documented as I made this just for fun in my free time)*
+
 ## How to deploy site
 - Just clone the repo or download via download button.
 - install all the requirements using 'pip install -r requirements.txt' in cmd line/ terminal
